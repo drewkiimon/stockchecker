@@ -4,8 +4,34 @@ import "./App.css";
 
 class App extends Component {
   render() {
-    return <Placecard ticker="AMD" company="Advanced Micro Systems" />;
+    var stockList = this.props.stocks.map(stock => {
+      return <Placecard ticker={stock.ticker} company={stock.company} />;
+    });
+
+    return (
+      <div>
+        <h1>Stocks</h1>
+        <ul>{stockList}</ul>
+      </div>
+    );
   }
 }
+
+App.defaultProps = {
+  stocks: [
+    {
+      ticker: "AMD",
+      company: "Advanced Micro Devices"
+    },
+    {
+      ticker: "SQ",
+      company: "Square Inc."
+    },
+    {
+      ticker: "PYPL",
+      company: "Paypal Holdings"
+    }
+  ]
+};
 
 export default App;
