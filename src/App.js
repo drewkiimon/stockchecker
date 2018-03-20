@@ -3,8 +3,35 @@ import Placecard from "./Components/Placecard";
 import "./App.css";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      stocks: [
+        {
+          ticker: "AMD",
+          company: "Advanced Micro Devices"
+        },
+        {
+          ticker: "SQ",
+          company: "Square Inc."
+        },
+        {
+          ticker: "PYPL",
+          company: "Paypal Holdings"
+        }
+      ]
+    };
+    setTimeout(this.addStock.bind(this), 5000);
+  }
+
+  addStock() {
+    const newStocks = this.state.stocks.slice();
+    newStocks.push({ ticker: "FB", company: "Facebook" });
+    this.setState({ stocks: newStocks });
+  }
+
   render() {
-    var stockList = this.props.stocks.map(stock => {
+    var stockList = this.state.stocks.map(stock => {
       return <Placecard ticker={stock.ticker} company={stock.company} />;
     });
 
@@ -16,22 +43,5 @@ class App extends Component {
     );
   }
 }
-
-App.defaultProps = {
-  stocks: [
-    {
-      ticker: "AMD",
-      company: "Advanced Micro Devices"
-    },
-    {
-      ticker: "SQ",
-      company: "Square Inc."
-    },
-    {
-      ticker: "PYPL",
-      company: "Paypal Holdings"
-    }
-  ]
-};
 
 export default App;
