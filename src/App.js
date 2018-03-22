@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Placecard from "./Components/Placecard";
 import "./App.css";
 
+// https://www.rithmschool.com/courses/react-fundamentals/state
+
 class App extends Component {
   constructor(props) {
     super(props);
